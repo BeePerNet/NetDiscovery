@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="NetDiscoveryMobile.Views.ZoneHierarchyPage"             
+             xmlns:views="clr-namespace:NetDiscoveryMobile.Views"
+             xmlns:lib="clr-namespace:NetDiscovery.Lib;assembly=NetDiscovery.Lib"
+             d:BindingContext="{x:Static lib:DummyDiscoveryClient.Client}"
+             Title="Zones">
+
+    <ScrollView Orientation="Vertical">
+        <StackLayout>
+            <Label HorizontalOptions="Center"  Padding="0,8,0,0" Text="Zones" />
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="16" />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="8" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="1" Text="Name" VerticalOptions="Center" />
+                <Label HorizontalOptions="Center" Padding="8" Grid.Column="2" Text="Zones" />
+                <Label HorizontalOptions="Center" Padding="8" Grid.Column="3" Text="Records" />
+            </Grid>
+            <BoxView Style="{DynamicResource ListLine}" />
+
+            <StackLayout BindableLayout.ItemsSource="{Binding Zones}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <views:ZoneHierarchyView />
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

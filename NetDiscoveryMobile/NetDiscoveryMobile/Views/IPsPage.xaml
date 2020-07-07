@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="NetDiscoveryMobile.Views.IPsPage"
+             xmlns:lib="clr-namespace:NetDiscovery.Lib;assembly=NetDiscovery.Lib"
+             d:BindingContext="{x:Static lib:DummyDiscoveryClient.Client}"
+             Title="IPs">
+    <ListView ItemsSource="{Binding IPs}" Margin="8" SelectionMode="Single">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1" />
+                            <RowDefinition />
+                            <RowDefinition Height="1" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="1"  Text="{Binding IP}" Style="{DynamicResource HeaderListItemTextStyle}" 
+                               LineBreakMode="TailTruncation" />
+                        <Label Style="{DynamicResource ColumnListItemTextStyle}" Grid.Row="1" Grid.Column="1" Text="{Binding Ports.Count}" />
+                        <Label Style="{DynamicResource NextPageIcon}" Grid.Column="2" Grid.Row="1"/>
+                        <BoxView Grid.Row="2" Grid.ColumnSpan="3" Color="LightGray" />
+
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnRecordItemSelected" />
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentPage>

@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="NetDiscovery.Lib.DiscoveryClient">
+    <Position X="1" Y="2" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <AssociationLine Name="Interfaces" Type="NetDiscovery.Lib.DiscoveryInterface" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="1.75" Y="2" />
+        <Point X="1.75" Y="1.312" />
+        <Point X="4" Y="1.312" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>YBRwAghDAiCUBBAKCQVgAT0DoAwUEEIIIhBzACFHeAg=</HashCode>
+      <FileName>DiscoveryClient.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Zones" />
+      <Property Name="Interfaces" />
+      <Property Name="AllZones" />
+      <Property Name="AllRecords" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="NetDiscovery.Lib.DiscoveryInterface" Collapsed="true">
+    <Position X="4" Y="1" Width="2" />
+    <TypeIdentifier>
+      <HashCode>CAADAiAAABAoACEAAABAAAQBAIAAAhAAIAAAAACGAAQ=</HashCode>
+      <FileName>DiscoveryInterface.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetDiscovery.Lib.DiscoveryIP" Collapsed="true">
+    <Position X="4" Y="2.5" Width="2" />
+    <InheritanceLine Type="NetDiscovery.Lib.DiscoveryNode&lt;T&gt;" FixedToPoint="true">
+      <Path>
+        <Point X="7.125" Y="2.441" />
+        <Point X="7.125" Y="2.875" />
+        <Point X="6" Y="2.875" />
+      </Path>
+    </InheritanceLine>
+    <AssociationLine Name="Ports" Type="NetDiscovery.Lib.DiscoveryPort">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.648" Y="0.214" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAEAAAABACAEEAAAFAAAAAQAIAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>DiscoveryIP.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Ports" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="NetDiscovery.Lib.DiscoveryItem" Collapsed="true">
+    <Position X="8.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DiscoveryItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetDiscovery.Lib.DiscoveryNode&lt;T&gt;" Collapsed="true">
+    <Position X="6.25" Y="1.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAACAEEAAAAAAAAAAACAQAAAQAQAAAAEAAIAA=</HashCode>
+      <FileName>DiscoveryNode.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NetDiscovery.Lib.DiscoveryPort" Collapsed="true">
+    <Position X="4" Y="3.75" Width="2" />
+    <InheritanceLine Type="NetDiscovery.Lib.DiscoveryNode&lt;T&gt;" FixedToPoint="true">
+      <Path>
+        <Point X="7.125" Y="2.441" />
+        <Point X="7.125" Y="4.063" />
+        <Point X="6" Y="4.063" />
+      </Path>
+    </InheritanceLine>
+    <AssociationLine Name="Instances" Type="NetDiscovery.Lib.DiscoveryZone" FixedToPoint="true">
+      <Path>
+        <Point X="4.917" Y="4.441" />
+        <Point X="4.917" Y="5.25" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.878" Y="0.36" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAQACAIAAQAAQAAAAAAAAAA=</HashCode>
+      <FileName>DiscoveryPort.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Instances" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="NetDiscovery.Lib.DiscoveryRecord" Collapsed="true">
+    <Position X="4" Y="6.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>IgQEAAIAIAAAAAAEBAAAACQIAAAAAAQAQQIgAEAABAw=</HashCode>
+      <FileName>DiscoveryRecord.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetDiscovery.Lib.DiscoveryZone">
+    <Position X="4" Y="5.25" Width="2" />
+    <InheritanceLine Type="NetDiscovery.Lib.DiscoveryNode&lt;T&gt;" FixedToPoint="true">
+      <Path>
+        <Point X="7.125" Y="2.441" />
+        <Point X="7.125" Y="6.511" />
+        <Point X="6" Y="6.511" />
+      </Path>
+    </InheritanceLine>
+    <AssociationLine Name="Records" Type="NetDiscovery.Lib.DiscoveryRecord" FixedFromPoint="true">
+      <Path>
+        <Point X="4.875" Y="9.885" />
+        <Point X="4.875" Y="9.838" />
+        <Point X="3.952" Y="9.838" />
+        <Point X="3.952" Y="6.642" />
+        <Point X="4" Y="6.642" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.183" Y="-0.867" Height="0.182" Width="0.764" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>IAAAAIAAACCEAACEAgAAQAQKAAAAAAAAAIIAACAAAAg=</HashCode>
+      <FileName>DiscoveryZone.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Records" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="NetDiscovery.Lib.DiscoveryZoneDomain" Collapsed="true">
+    <Position X="8" Y="4.5" Width="2" />
+    <InheritanceLine Type="NetDiscovery.Lib.DiscoveryZone" ManuallyRouted="true" FixedFromPoint="true">
+      <Path>
+        <Point X="6" Y="7.766" />
+        <Point X="7.401" Y="7.766" />
+        <Point X="7.401" Y="4.846" />
+        <Point X="8" Y="4.846" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DiscoveryZoneDomain.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetDiscovery.Lib.DiscoveryZoneProtocol" Collapsed="true">
+    <Position X="8" Y="6.5" Width="2" />
+    <InheritanceLine Type="NetDiscovery.Lib.DiscoveryZone" ManuallyRouted="true" FixedFromPoint="true">
+      <Path>
+        <Point X="6" Y="7.766" />
+        <Point X="7.365" Y="7.766" />
+        <Point X="7.365" Y="6.846" />
+        <Point X="8" Y="6.846" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DiscoveryZoneProtocol.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetDiscovery.Lib.DiscoveryZoneService" Collapsed="true">
+    <Position X="8" Y="5.5" Width="2" />
+    <InheritanceLine Type="NetDiscovery.Lib.DiscoveryZone" ManuallyRouted="true" FixedFromPoint="true">
+      <Path>
+        <Point X="6" Y="7.766" />
+        <Point X="7.406" Y="7.766" />
+        <Point X="7.406" Y="6.002" />
+        <Point X="8" Y="6.002" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAABAA=</HashCode>
+      <FileName>DiscoveryZoneService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

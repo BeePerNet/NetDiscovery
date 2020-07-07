@@ -1,0 +1,428 @@
+﻿<Window x:Class="NetDiscoveryWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:clr="clr-namespace:System;assembly=System.Runtime"
+        xmlns:local="clr-namespace:NetDiscoveryWPF"
+        xmlns:dis="clr-namespace:NetDiscovery.Lib;assembly=NetDiscovery.Lib"
+        mc:Ignorable="d"
+        Title="NetDiscovery" Height="450" Width="800" Loaded="Window_Loaded" ResizeMode="CanResizeWithGrip">
+    <Window.DataContext>
+        <dis:DiscoveryClient />
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel.Resources>
+                <Style TargetType="Button">
+                    <Style.Setters>
+                        <Setter Property="Padding" Value="12,2" />
+                        <Setter Property="Margin" Value="2" />
+                    </Style.Setters>
+                </Style>
+                <Style TargetType="CheckBox">
+                    <Style.Setters>
+                        <Setter Property="Margin" Value="4,2" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                    </Style.Setters>
+                </Style>
+            </StackPanel.Resources>
+            <CheckBox Content="Enable logs" IsChecked="{Binding EnableLog}" />
+            <Button Click="Button_Start">Start</Button>
+            <Button Click="Button_Stop">Stop</Button>
+            <Button Click="Button_Refresh">Refresh</Button>
+            <Button Click="Button_ClearLogs">Clear logs</Button>
+            <Button Click="Button_Clear">Clear all</Button>
+        </StackPanel>
+        <TabControl Grid.Row="1" SelectedIndex="1">
+            <TabItem Header="Network">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <DataGrid ItemsSource="{Binding Interfaces}" Name="Interfaces">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                            <DataGridTextColumn Header="Description" Binding="{Binding Description}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
+                    <ScrollViewer Grid.Column="2">
+                        <StackPanel Margin="8" 
+                                    DataContext="{Binding SelectedItem,ElementName=Interfaces}">
+                            <Label Content="{Binding Description}" HorizontalAlignment="Center" />
+                            <Line Height="1" Stroke="LightGray" />
+                            <DockPanel>
+                                <Label Content="Id" />
+                                <Label Content="{Binding Id}" HorizontalAlignment="Right" />
+                            </DockPanel>
+                            <Line Height="1" Stroke="LightGray" />
+                            <DockPanel>
+                                <Label Content="Physical address" />
+                                <Label Content="{Binding PhysicalAddress}" HorizontalAlignment="Right" />
+                            </DockPanel>
+                            <Line Height="1" Stroke="LightGray" />
+                            <DockPanel>
+                                <Label Content="Status" />
+                                <Label Content="{Binding OperationalStatus}" HorizontalAlignment="Right" />
+                            </DockPanel>
+                            <Line Height="1" Stroke="LightGray" />
+                            <DockPanel>
+                                <Label Content="Type" />
+                                <Label Content="{Binding NetworkInterfaceType}" HorizontalAlignment="Right" />
+                            </DockPanel>
+                            <Line Height="1" Stroke="LightGray" />
+                            <DockPanel>
+                                <Label Content="Speed" />
+                                <Label Content="{Binding Speed, StringFormat={}{0:N0} bps}" HorizontalAlignment="Right" />
+                            </DockPanel>
+                            <Line Height="1" Stroke="LightGray" />
+                            <DockPanel>
+                                <Label Content="Address" />
+                                <ItemsControl ItemsSource="{Binding Properties.UnicastAddresses}"  HorizontalAlignment="Right">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Label Content="{Binding Address}" HorizontalAlignment="Right" />
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </DockPanel>
+                            <Line Height="1" Stroke="LightGray" />
+                            <DockPanel>
+                                <Label Content="Gateway" />
+                                <ItemsControl ItemsSource="{Binding Properties.GatewayAddresses}"  HorizontalAlignment="Right">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Label Content="{Binding Address}" HorizontalAlignment="Right" />
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </DockPanel>
+                            <Line Height="1" Stroke="LightGray" />
+                            <DockPanel>
+                                <Label Content="Dns" />
+                                <ItemsControl ItemsSource="{Binding Properties.DnsAddresses}"  HorizontalAlignment="Right">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Label Content="{Binding .}" HorizontalAlignment="Right" />
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </DockPanel>
+                            <Line Height="1" Stroke="LightGray" />
+                            <DockPanel>
+                                <Label Content="Dns suffix" />
+                                <Label Content="{Binding DnsSuffix}" HorizontalAlignment="Right" />
+                            </DockPanel>
+                            <Line Height="1" Stroke="LightGray" />
+                            <DockPanel>
+                                <Label Content="Dns enabled" />
+                                <Label Content="{Binding IsDnsEnabled}" HorizontalAlignment="Right" />
+                            </DockPanel>
+                            <Line Height="1" Stroke="LightGray" />
+                            <DockPanel>
+                                <Label Content="Dynamic Dns enabled" />
+                                <Label Content="{Binding IsDynamicDnsEnabled}" HorizontalAlignment="Right" />
+                            </DockPanel>
+                            <Line Height="1" Stroke="LightGray" />
+                            <DockPanel>
+                                <Label Content="Dhcp" />
+                                <ItemsControl ItemsSource="{Binding Properties.DhcpServerAddresses}"  HorizontalAlignment="Right">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Label Content="{Binding .}" HorizontalAlignment="Right" />
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </DockPanel>
+                            <Line Height="1" Stroke="LightGray" />
+                            <DockPanel>
+                                <Label Content="Wins" />
+                                <ItemsControl ItemsSource="{Binding Properties.WinsServersAddresses}"  HorizontalAlignment="Right">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Label Content="{Binding .}" HorizontalAlignment="Right" />
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </DockPanel>
+                            <Line Height="1" Stroke="LightGray" />
+                            <DockPanel>
+                                <Label Content="Received only" />
+                                <Label Content="{Binding IsReceiveOnly}" HorizontalAlignment="Right" />
+                            </DockPanel>
+                            <Line Height="1" Stroke="LightGray" />
+                            <DockPanel>
+                                <Label Content="Supports multicast" />
+                                <Label Content="{Binding SupportsMulticast}" HorizontalAlignment="Right" />
+                            </DockPanel>
+                            <Line Height="1" Stroke="LightGray" />
+                            <DockPanel>
+                                <Label Content="Multicast" />
+                                <ItemsControl ItemsSource="{Binding Properties.MulticastAddresses}"  HorizontalAlignment="Right">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Label Content="{Binding Address}" HorizontalAlignment="Right" />
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </DockPanel>
+                            <Line Height="1" Stroke="LightGray" />
+                            <DockPanel>
+                                <Label Content="Anycast" />
+                                <ItemsControl ItemsSource="{Binding Properties.AnycastAddresses}"  HorizontalAlignment="Right">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Label Content="{Binding Address}" HorizontalAlignment="Right" />
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </DockPanel>
+                            <Line Height="1" Stroke="LightGray" />
+                            <Label Content="IPv4" HorizontalAlignment="Center" />
+                            <Line Height="1" Stroke="LightGray" />
+                            <DockPanel>
+                                <Label Content="Automatic private addressing active" />
+                                <Label Content="{Binding IPv4Properties.IsAutomaticPrivateAddressingActive}" HorizontalAlignment="Right" />
+                            </DockPanel>
+                            <Line Height="1" Stroke="LightGray" />
+                            <DockPanel>
+                                <Label Content="Automatic private addressing enabled" />
+                                <Label Content="{Binding IPv4Properties.IsAutomaticPrivateAddressingEnabled}" HorizontalAlignment="Right" />
+                            </DockPanel>
+                            <Line Height="1" Stroke="LightGray" />
+                            <DockPanel>
+                                <Label Content="Dhcp enabled" />
+                                <Label Content="{Binding IPv4Properties.IsDhcpEnabled}" HorizontalAlignment="Right" />
+                            </DockPanel>
+                            <Line Height="1" Stroke="LightGray" />
+                            <DockPanel>
+                                <Label Content="Forwarding enabled" />
+                                <Label Content="{Binding IPv4Properties.IsForwardingEnabled}" HorizontalAlignment="Right" />
+                            </DockPanel>
+                            <Line Height="1" Stroke="LightGray" />
+                            <DockPanel>
+                                <Label Content="Mtu" />
+                                <Label Content="{Binding IPv4Properties.Mtu}" HorizontalAlignment="Right" />
+                            </DockPanel>
+                            <Line Height="1" Stroke="LightGray" />
+                            <DockPanel>
+                                <Label Content="Uses Wins" />
+                                <Label Content="{Binding IPv4Properties.UsesWins}" HorizontalAlignment="Right" />
+                            </DockPanel>
+                            <Line Height="1" Stroke="LightGray" />
+                            <Label Content="IPv6" HorizontalAlignment="Center" />
+                            <Line Height="1" Stroke="LightGray" />
+                            <DockPanel>
+                                <Label Content="Mtu" />
+                                <Label Content="{Binding IPv6Properties.Mtu}" HorizontalAlignment="Right" />
+                            </DockPanel>
+                            <Line Height="1" Stroke="LightGray" />
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Hierarchy">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="300" MinWidth="50" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <TreeView ItemsSource="{Binding Zones}" Name="ServicesTreeview">
+                        <TreeView.Resources>
+                            <Style TargetType="{x:Type TreeViewItem}">
+                                <Setter Property="IsExpanded" Value="True"/>
+                            </Style>
+                        </TreeView.Resources>
+                        <TreeView.ItemTemplate>
+                            <HierarchicalDataTemplate ItemsSource="{Binding Zones}">
+                                <TextBlock Text="{Binding Name}" />
+                            </HierarchicalDataTemplate>
+                        </TreeView.ItemTemplate>
+                    </TreeView>
+                    <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
+                    <Grid Grid.Column="2" DataContext="{Binding ElementName=ServicesTreeview, Path=SelectedItem}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <DataGrid Grid.Row="0" ItemsSource="{Binding Zones}" AutoGenerateColumns="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                                <DataGridTextColumn Header="Childs" Binding="{Binding Zones.Count}" />
+                                <DataGridTextColumn Header="Records" Binding="{Binding Records.Count}" />
+                                <DataGridCheckBoxColumn Header="Unicast" Binding="{Binding Unicast, Mode=OneWay}" />
+                                <DataGridTextColumn Header="Updated" Binding="{Binding Updated, StringFormat=HH:mm:ss.fffffff}" />
+                                <DataGridTextColumn Header="Created" Binding="{Binding Created, StringFormat=HH:mm:ss.fffffff}" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" />
+                        <DataGrid Grid.Row="2" ItemsSource="{Binding Records}" />
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="IP Addresses">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="300" MinWidth="50" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <DataGrid Name="ServersDataGrid" ItemsSource="{Binding IPs}" />
+                    <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
+                    <Grid Grid.Column="2" DataContext="{Binding SelectedItem, ElementName=ServersDataGrid}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <DataGrid Grid.Column="0" ItemsSource="{Binding Ports}" Name="PortsDataGrid">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Instances" Binding="{Binding Instances.Count}" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
+                            <DataGrid Grid.Column="2" ItemsSource="{Binding Dns}" AutoGenerateColumns="False">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Dns" Binding="{Binding}" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                        <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch"  />
+                        <DataGrid Grid.Row="2" DataContext="{Binding SelectedItem, ElementName=PortsDataGrid}" ItemsSource="{Binding Instances}" AutoGenerateColumns="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Name" Binding="{Binding DomainName}" />
+                                <DataGridTextColumn Header="Service" Binding="{Binding Parent.ServiceName}" />
+                                <DataGridTextColumn Header="Childs" Binding="{Binding Zones.Count}" />
+                                <DataGridTextColumn Header="Records" Binding="{Binding Records.Count}" />
+                                <DataGridCheckBoxColumn Header="Unicast" Binding="{Binding Unicast, Mode=OneWay}" />
+                                <DataGridTextColumn Header="Updated" Binding="{Binding Updated, StringFormat=HH:mm:ss.fffffff}" />
+                                <DataGridTextColumn Header="Created" Binding="{Binding Created, StringFormat=HH:mm:ss.fffffff}" />
+                                <DataGridTextColumn Header="Reverse" Binding="{Binding ReverseName}" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Dns Zones">
+                <TabItem.Resources>
+                    <CollectionViewSource x:Key="AllZonesSource" Source="{Binding AllZones}" IsLiveSortingRequested="True">
+                        <CollectionViewSource.LiveSortingProperties>
+                            <clr:String>Updated</clr:String>
+                        </CollectionViewSource.LiveSortingProperties>
+                    </CollectionViewSource>
+                </TabItem.Resources>
+                <DataGrid ItemsSource="{Binding Source={StaticResource AllZonesSource}}" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Name" Binding="{Binding DomainName}" />
+                        <DataGridTextColumn Header="Childs" Binding="{Binding Zones.Count}" />
+                        <DataGridTextColumn Header="Records" Binding="{Binding Records.Count}" />
+                        <DataGridCheckBoxColumn Header="Unicast" Binding="{Binding Unicast, Mode=OneWay}" />
+                        <DataGridTextColumn Header="Updated" Binding="{Binding Updated, StringFormat=HH:mm:ss.fffffff}" />
+                        <DataGridTextColumn Header="Created" Binding="{Binding Created, StringFormat=HH:mm:ss.fffffff}" />
+                        <DataGridTextColumn Header="Reverse" Binding="{Binding ReverseName}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem Header="Dns Records">
+                <TabItem.Resources>
+                    <CollectionViewSource x:Key="AllRecordsSource" Source="{Binding AllRecords}" IsLiveSortingRequested="True">
+                        <CollectionViewSource.LiveSortingProperties>
+                            <clr:String>Updated</clr:String>
+                        </CollectionViewSource.LiveSortingProperties>
+                    </CollectionViewSource>
+                </TabItem.Resources>
+                <DataGrid ItemsSource="{Binding Source={StaticResource AllRecordsSource}}" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                        <DataGridTextColumn Header="Type" Binding="{Binding Type}" />
+                        <DataGridTextColumn Header="Target" Binding="{Binding Target}" />
+                        <DataGridTextColumn Header="From" Binding="{Binding From}" />
+                        <DataGridTextColumn Header="Updated" Binding="{Binding Updated, StringFormat=HH:mm:ss.fffffff}" />
+                        <DataGridTextColumn Header="Created" Binding="{Binding Created, StringFormat=HH:mm:ss.fffffff}" />
+                        <DataGridTextColumn Header="Record created" Binding="{Binding RecordCreated, StringFormat=HH:mm:ss.fffffff}" />
+                        <DataGridTextColumn Header="Reverse" Binding="{Binding ReverseName}" />
+                        <DataGridTextColumn Header="Target" Binding="{Binding Value}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem Header="Query sent">
+                <DataGrid ItemsSource="{Binding QueryLog}" IsReadOnly="True" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Timestamp" Binding="{Binding Timestamp, StringFormat=HH:mm:ss.fffffff}" />
+                        <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                        <DataGridTextColumn Header="Type" Binding="{Binding DnsType}" />
+                        <DataGridCheckBoxColumn Header="Unicast" Binding="{Binding Unicast, Mode=OneWay}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem Header="Record received">
+                <DataGrid ItemsSource="{Binding RecordLog}" IsReadOnly="True" />
+            </TabItem>
+            <TabItem Header="Question received">
+                <DataGrid ItemsSource="{Binding QuestionLog}" IsReadOnly="True" />
+            </TabItem>
+        </TabControl>
+        <StatusBar Grid.Row="2">
+            <StatusBar.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Margin" Value="2,0" />
+                </Style>
+                <Style TargetType="StatusBarItem">
+                    <Setter Property="Padding" Value="6,1,6,2" />
+                </Style>
+            </StatusBar.Resources>
+            <StatusBarItem>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>Last record:</TextBlock>
+                    <TextBlock Text="{Binding LastReceived, StringFormat=HH:mm:ss.fffffff}" />
+                </StackPanel>
+            </StatusBarItem>
+            <StatusBarItem>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>Zones:</TextBlock>
+                    <TextBlock Text="{Binding AllZones.Count}" />
+                </StackPanel>
+            </StatusBarItem>
+            <StatusBarItem>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>Records:</TextBlock>
+                    <TextBlock Text="{Binding AllRecords.Count}" />
+                </StackPanel>
+            </StatusBarItem>
+            <StatusBarItem>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>Query sent:</TextBlock>
+                    <TextBlock Text="{Binding QueryLog.Count}" />
+                </StackPanel>
+            </StatusBarItem>
+            <StatusBarItem>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>Record received:</TextBlock>
+                    <TextBlock Text="{Binding RecordLog.Count}" />
+                </StackPanel>
+            </StatusBarItem>
+            <StatusBarItem>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>Question received:</TextBlock>
+                    <TextBlock Text="{Binding QuestionLog.Count}" />
+                </StackPanel>
+            </StatusBarItem>
+        </StatusBar>
+    </Grid>
+</Window>

@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove=".~lock.service-names-port-numbers.csv#" />
+    <None Remove="Service Name and Transport Protocol Port Number Registry.xml" />
+    <None Remove="ServiceAndPortNameRegistry.xml" />
+    <None Remove="ServiceNameandTransportProtocolPortNumberRegistry.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Makaretu.Dns.Unicast" Version="0.11.1" />
+    <PackageReference Include="ReactiveUI" Version="11.4.17" />
+    <PackageReference Include="Threenine.LinqToCsv" Version="1.6.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MDNS\MDNS.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Service Name and Transport Protocol Port Number Registry.xml" />
+    <Resource Include="ServiceAndPortNameRegistry.xml" />
+    <Resource Include="ServiceNameandTransportProtocolPortNumberRegistry.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="TextResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>TextResources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="TextResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>TextResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>
