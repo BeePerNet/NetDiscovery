@@ -1,2 +1,0 @@
-MainPackage=P:\GitHub\NetDiscovery\NetDiscoveryMobile\NetDiscoveryMobile.UWP\bin\x64\Debug\NetDiscoveryMobile.UWP_1.0.0.0_x64_Debug.appx
-SymbolPackage=P:\GitHub\NetDiscovery\NetDiscoveryMobile\NetDiscoveryMobile.UWP\obj\x64\Debug\Symbols\NetDiscoveryMobile.UWP_1.0.0.0_x64_Debug.appxsym

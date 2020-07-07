@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:lib="clr-namespace:NetDiscovery.Lib;assembly=NetDiscovery.Lib"
+             d:BindingContext="{x:Static lib:DummyDiscoveryClient.Client}"
+             x:Class="NetDiscoveryMobile.Views.ParametersPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <TableView Margin="8" HasUnevenRows="True">
+                <TableSection Title="Actions">
+                    <ViewCell>
+                        <FlexLayout FlexLayout.Grow="1" JustifyContent="Center"
+                                AlignItems="Start" AlignContent="Start"
+                                Wrap="Wrap">
+                            <Button Text="Start"  Command="{Binding StartCommand}" />
+                            <Button Text="Stop"   Command="{Binding StopCommand}" />
+                            <Button Text="Discover"  Command="{Binding StartQueriesCommand}" />
+                            <Button Text="Clear logs"   Command="{Binding ClearLogsCommand}" />
+                            <Button Text="Clear all"   Command="{Binding ClearAllCommand}" />
+                        </FlexLayout>
+                    </ViewCell>
+                </TableSection>
+                <TableSection Title="mDNS client" >
+                    <SwitchCell Text="Running" On="{Binding Running}" IsEnabled="False" />
+                    <SwitchCell Text="Logging" On="{Binding EnableLog}" />
+                </TableSection>
+            </TableView>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

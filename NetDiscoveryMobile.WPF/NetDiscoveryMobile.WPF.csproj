@@ -190,7 +190,7 @@
       <Project>{075b69d0-8b01-4385-bd32-5ea8629f6fc1}</Project>
       <Name>NetDiscovery.Lib</Name>
     </ProjectReference>
-    <ProjectReference Include="..\NetDiscoveryMobile\NetDiscoveryMobile\NetDiscoveryMobile.csproj">
+    <ProjectReference Include="..\NetDiscoveryMobile\NetDiscoveryMobile.csproj">
       <Project>{2988918d-33e5-4017-96d5-9afc074549ca}</Project>
       <Name>NetDiscoveryMobile</Name>
     </ProjectReference>

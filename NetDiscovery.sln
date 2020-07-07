@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetDiscoveryMobile.UWP", "NetDiscoveryMobile\NetDiscoveryMobile.UWP\NetDiscoveryMobile.UWP.csproj", "{1C69E7B9-D225-4E25-A4EE-2590E4A0E382}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetDiscoveryMobile.UWP", "NetDiscoveryMobile.UWP\NetDiscoveryMobile.UWP.csproj", "{1C69E7B9-D225-4E25-A4EE-2590E4A0E382}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetDiscoveryMobile.Android", "NetDiscoveryMobile\NetDiscoveryMobile.Android\NetDiscoveryMobile.Android.csproj", "{D56A016C-3650-4790-A901-9FA17D8393EC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetDiscoveryMobile.Android", "NetDiscoveryMobile.Android\NetDiscoveryMobile.Android.csproj", "{D56A016C-3650-4790-A901-9FA17D8393EC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetDiscoveryMobile.iOS", "NetDiscoveryMobile\NetDiscoveryMobile.iOS\NetDiscoveryMobile.iOS.csproj", "{1E0BC779-2576-4199-9DA7-D1C0BF16375D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetDiscoveryMobile.iOS", "NetDiscoveryMobile.iOS\NetDiscoveryMobile.iOS.csproj", "{1E0BC779-2576-4199-9DA7-D1C0BF16375D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetDiscoveryMobile.Web", "NetDiscoveryMobile\NetDiscoveryMobile.Web\NetDiscoveryMobile.Web.csproj", "{590578F1-1B26-4E2C-AAEE-9E19B2323DBA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetDiscoveryMobile.Web", "NetDiscoveryMobile.Web\NetDiscoveryMobile.Web.csproj", "{590578F1-1B26-4E2C-AAEE-9E19B2323DBA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetDiscoveryMobile", "NetDiscoveryMobile\NetDiscoveryMobile\NetDiscoveryMobile.csproj", "{2988918D-33E5-4017-96D5-9AFC074549CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetDiscoveryMobile", "NetDiscoveryMobile\NetDiscoveryMobile.csproj", "{2988918D-33E5-4017-96D5-9AFC074549CA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetDiscoveryWPF", "NetDiscoveryWPF\NetDiscoveryWPF.csproj", "{658F918E-37E8-4942-BE28-87F65EA06748}"
 EndProject
